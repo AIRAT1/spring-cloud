@@ -43,14 +43,15 @@ class SpringCloudApplicationTests {
 				.perform(get("/cats"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(halJson))
-//				.andExpect(
-//						mvcResult -> {
-//							String contentAsString = mvcResult.getResponse().getContentAsString();
-//							assertTrue(contentAsString.split("totalElements")[1].split(":")[1].trim()
-//							.split(",")[0].equals("3"));
-//						}
-//				)
-		;
+				.andExpect(
+						mvcResult -> {
+							String contentAsString = mvcResult.getResponse().getContentAsString();
+							System.err.println(contentAsString);
+							System.err.println(catRepository.findAll());
+							assertTrue(contentAsString.split("totalElements")[1].split(":")[1].trim()
+							.split(",")[0].equals("0"));
+						}
+				);
 	}
 
 }
